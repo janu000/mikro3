@@ -19,7 +19,7 @@ const int rodata2 = 42;
 
 auto main(int argc, char **argv) -> int
 {
-    int stack = 0;
+    int stack;
     fmt::print("Value of variable bss: {}, Address of variable bss: {}\n", bss, fmt::ptr(&bss));
     fmt::print("Value of variable bss2: {}, Address of variable bss2: {}\n", bss2, fmt::ptr(&bss2));
     fmt::print("Value of variable data: {}, Address of variable data: {}\n", data, fmt::ptr(&data));
