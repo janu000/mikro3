@@ -7,8 +7,13 @@
 #include "CLI/CLI.hpp"
 #include "config.h"
 
+// .bss segment
 int foo;
+
+// data segment
 int data = 4711;
+
+// rodata segment
 const int rodata = 42;
 
 auto main(int argc, char **argv) -> int
