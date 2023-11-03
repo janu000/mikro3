@@ -7,13 +7,14 @@
 #include "CLI/CLI.hpp"
 #include "config.h"
 
+int foo;
+int data = 4711;
+const int rodata = 42;
+
 auto main(int argc, char **argv) -> int
 {
-    /**
-     * The {fmt} lib is a cross platform library for printing and formatting text
-     * it is much more convenient than std::cout and printf
-     * More info at https://fmt.dev/latest/api.html
-     */
-    fmt::print("Hello, {}!\n", "hello");
-    return 0; /* exit gracefully*/
+    fmt::print("Value of variable foo: {}, Address of variable foo: {}\n", foo, fmt::ptr(&foo));
+    fmt::print("Value of variable data: {}, Address of variable data: {}\n", data, fmt::ptr(&data));
+    fmt::print("Value of variable rodata: {}, Address of variable rodata: {}\n", rodata, fmt::ptr(&rodata));
+    return 0; 
 }
