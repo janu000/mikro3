@@ -27,8 +27,9 @@ auto main(int argc, char **argv) -> int
      * More info at https://fmt.dev/latest/api.html
      */
     fmt::print("Hello, {}!\n", app.get_name());
-
     /* INSERT YOUR CODE HERE */
+    int count = 20;
+    app.add_option("-c,--count", count);
 
     return 0; /* exit gracefully*/
 }
