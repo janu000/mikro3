@@ -36,7 +36,7 @@ auto main(int argc, char **argv) -> int
     for (int i = 0; i<count; i++)
     {
         vector[i] = rand() % 100 + 1;
-        fmt::print("{}, ", vector[i]);
+        fmt::print("{} ", vector[i]);
     }
     return 0; /* exit gracefully*/
 }
