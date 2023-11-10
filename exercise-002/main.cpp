@@ -7,6 +7,7 @@
 
 auto main(int argc, char **argv) -> int
 {
+    int count = 20;
     /**
      * CLI11 is a command line parser to add command line options
      * More info at https://github.com/CLIUtils/CLI11#usage
@@ -15,6 +16,7 @@ auto main(int argc, char **argv) -> int
     try
     {
         app.set_version_flag("-V,--version", fmt::format("{} {}", PROJECT_VER, PROJECT_BUILD_DATE));
+        app.add_option("-c,--count", count, fmt::format("Create a vector with the given size default: {}", count));
         app.parse(argc, argv);
     }
     catch (const CLI::ParseError &e)
@@ -27,16 +29,14 @@ auto main(int argc, char **argv) -> int
      * it is much more convenient than std::cout and printf
      * More info at https://fmt.dev/latest/api.html
      */
-    fmt::print("Hello, {}!\n", app.get_name());
+    fmt::print("Created a vector with {} elements\n", count);
     /* INSERT YOUR CODE HERE */
-    int count = 20;
-    app.add_option("-c,--count", count);
 
     std::vector<int> vector(count);
     for (int i = 0; i<count; i++)
     {
         vector[i] = rand() % 100 + 1;
-        fmt::print("{}\n", vector[i]);
+        fmt::print("{}, ", vector[i]);
     }
     return 0; /* exit gracefully*/
 }
