@@ -9,6 +9,7 @@
 auto main(int argc, char **argv) -> int
 {
     int count = 20;
+    std::srand(std::time(nullptr)); // "random" seed for rand()
     /**
      * CLI11 is a command line parser to add command line options
      * More info at https://github.com/CLIUtils/CLI11#usage
