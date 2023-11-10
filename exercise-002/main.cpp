@@ -3,6 +3,7 @@
 
 #include "CLI/CLI.hpp"
 #include "config.h"
+#include "stdio.h"
 
 auto main(int argc, char **argv) -> int
 {
@@ -31,5 +32,11 @@ auto main(int argc, char **argv) -> int
     int count = 20;
     app.add_option("-c,--count", count);
 
+    std::vector<int> vector(count);
+    for (int i = 0; i<count; i++)
+    {
+        vector[i] = rand() % 100 + 1;
+        fmt::print("{}\n", vector[i]);
+    }
     return 0; /* exit gracefully*/
 }
