@@ -1,10 +1,12 @@
 #include <fmt/chrono.h>
 #include <fmt/format.h>
-
 #include "CLI/CLI.hpp"
 #include "config.h"
-#include "stdio.h"
+#include <vector>
 #include <algorithm>    // std::sort
+#include <random>
+
+int getRandomNumber(int min, int max);
 
 auto main(int argc, char **argv) -> int
 {
@@ -37,7 +39,7 @@ auto main(int argc, char **argv) -> int
     std::vector<int> vector(count);
     for (int i = 0; i<count; i++)
     {
-        vector[i] = rand() % 100 + 1;
+        vector[i] = getRandomNumber(1, 100);
         fmt::print("{} ", vector[i]);
     }
 
@@ -58,4 +60,12 @@ auto main(int argc, char **argv) -> int
     fmt::print("\nTime for sorting: {}\n", elapsed);
 
     return 0; /* exit gracefully*/
+}
+
+int getRandomNumber(int min, int max) {
+    std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution<int> distribution(min, max);
+
+    return distribution(gen);
 }
