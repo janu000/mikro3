@@ -3,7 +3,7 @@
 #include "CLI/CLI.hpp"
 #include "config.h"
 #include <vector>
-#include <algorithm>    // std::sort
+#include <algorithm> 
 #include <random>
 
 int getRandomNumber(int min, int max);
@@ -48,6 +48,7 @@ auto main(int argc, char **argv) -> int
     auto end = std::chrono::system_clock::now();    
     auto elapsed = std::chrono::duration<double>(end - start);
 
+    fmt::print("The sorted vector: \n[{}]\n", fmt::join(vector, ", "));
     fmt::print("Time for sorting: {}\n", elapsed);
 
     return 0; /* exit gracefully*/
