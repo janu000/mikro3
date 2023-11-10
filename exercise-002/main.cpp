@@ -34,30 +34,21 @@ auto main(int argc, char **argv) -> int
      * More info at https://fmt.dev/latest/api.html
      */
     fmt::print("Created a vector with {} elements\n", count);
-    /* INSERT YOUR CODE HERE */
-
     std::vector<int> vector(count);
-    for (int i = 0; i<count; i++)
+    for (auto &i : vector)
     {
-        vector[i] = getRandomNumber(1, 100);
-        fmt::print("{} ", vector[i]);
+        i = getRandomNumber(1, 100);
     }
+    fmt::print("The vector: \n[{}]\n", fmt::join(vector, ", "));
 
-    auto start = std::chrono::system_clock::now();  // start timer
-
+    auto start = std::chrono::system_clock::now();  
     /* TIMED FUCTION */
     std::sort(vector.begin(), vector.end());    //sort vector
     /* END TIMED FUNCTION*/
-    auto end = std::chrono::system_clock::now();    // end timer
+    auto end = std::chrono::system_clock::now();    
     auto elapsed = std::chrono::duration<double>(end - start);
 
-    // Print Vector
-    fmt::print("\nSorted Vector:\n");
-    for (int num : vector) {
-        fmt::print("{} ", num);
-    }
-
-    fmt::print("\nTime for sorting: {}\n", elapsed);
+    fmt::print("Time for sorting: {}\n", elapsed);
 
     return 0; /* exit gracefully*/
 }
