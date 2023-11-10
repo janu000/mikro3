@@ -37,23 +37,23 @@ auto main(int argc, char **argv) -> int
     for (int i = 0; i<count; i++)
     {
         vector[i] = rand() % 100 + 1;
-    }
-    
-    for (int num : vector) {
-        fmt::print("{} ", num);
+        fmt::print("{} ", vector[i]);
     }
 
-    auto start = std::chrono::system_clock::now();
+    auto start = std::chrono::system_clock::now();  // start timer
 
     /* TIMED FUCTION */
-    std::sort(vector.begin(), vector.end());
+    std::sort(vector.begin(), vector.end());    //sort vector
     /* END TIMED FUNCTION*/
-    auto end = std::chrono::system_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    auto end = std::chrono::system_clock::now();    // end timer
+    auto elapsed = std::chrono::duration<double>(end - start);
+
+    // Print Vector
     fmt::print("\nSorted Vector:\n");
     for (int num : vector) {
         fmt::print("{} ", num);
     }
+
     fmt::print("\nTime for sorting: {}\n", elapsed);
 
     return 0; /* exit gracefully*/
