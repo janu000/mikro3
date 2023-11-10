@@ -4,6 +4,7 @@
 #include "CLI/CLI.hpp"
 #include "config.h"
 #include "stdio.h"
+#include <algorithm>    // std::sort
 
 auto main(int argc, char **argv) -> int
 {
@@ -36,7 +37,24 @@ auto main(int argc, char **argv) -> int
     for (int i = 0; i<count; i++)
     {
         vector[i] = rand() % 100 + 1;
-        fmt::print("{} ", vector[i]);
     }
+    
+    for (int num : vector) {
+        fmt::print("{} ", num);
+    }
+
+    auto start = std::chrono::system_clock::now();
+
+    /* TIMED FUCTION */
+    std::sort(vector.begin(), vector.end());
+    /* END TIMED FUNCTION*/
+    auto end = std::chrono::system_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    fmt::print("\nSorted Vector:\n");
+    for (int num : vector) {
+        fmt::print("{} ", num);
+    }
+    fmt::print("\nTime for sorting: {}\n", elapsed);
+
     return 0; /* exit gracefully*/
 }
