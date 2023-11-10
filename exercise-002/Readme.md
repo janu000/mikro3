@@ -38,9 +38,9 @@ git push -u origin solution-002
 Nun haben Sie den branch `main` aus meinem Repository in Ihren Fork übertragen.
 
 
-## Der erste Commit
+## Der erste Commit 
 
-Um den ``git Workflow`` zu testen korrigieren Sie zunächst den [Schreibfehler in Zeile 11](exercise-002/main.cpp#L11).
+Um den ``git Workflow`` zu testen korrigieren Sie zunächst den [Schreibfehler in Zeile 11](exercise-002/main.cpp#L11). 
 
 ### Änderungen in den Staging Bereich aufnehmen
 
