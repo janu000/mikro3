@@ -2,9 +2,11 @@
 
 LinkedList::~LinkedList()
 {
-  for (auto tmp = m_head; tmp != nullptr; tmp = tmp->pNext /* prepare the next in the row */) {
-    auto elem = tmp; /* save the element to be deleted */
-    delete elem;
+  while (size() != 0) {
+    auto tmp = m_head; /* save the element to be deleted */
+    if(remove(tmp)){
+      delete tmp;
+    }
   }
 }
 
@@ -14,9 +16,17 @@ bool LinkedList::insert_tail(LinkedListNode *node)
   if (nullptr == node) {
     return ret;
   }
-  node->pNext = nullptr;
-  LinkedList::m_tail->pNext = node;
-  LinkedList::m_tail = node;
+  if (nullptr == m_tail) {
+    // Wenn die Liste leer ist, füge das erste Element ein
+    m_head = node;
+    m_tail = node;
+    ret = true;
+  } else {
+    // Füge das Element ans Ende der Liste hinzu
+    m_tail->pNext = node;
+    m_tail = node;
+    ret = true;
+  }
   return ret;
 }
 
@@ -26,8 +36,8 @@ bool LinkedList::insert_head(LinkedListNode *node)
   if (nullptr == node) {
     return ret;
   }
-  node->pNext = LinkedList::m_head;
-  LinkedList::m_head = node;
+  node->pNext = m_head;
+  m_head = node;
   ret = true;
   return ret;
 }
@@ -38,9 +48,12 @@ bool LinkedList::insert_after(LinkedListNode *loc, LinkedListNode *node)
   if ((nullptr == loc) || (nullptr == node)) {
     return ret;
   }
-  LinkedListNode *temp = loc->pNext;
+  if (nullptr == loc->pNext){
+    m_tail = node;
+  }
+  auto tmp = loc->pNext;
   loc->pNext = node;
-  node->pNext = temp;
+  node->pNext = tmp;
   ret = true;
   return ret;
 }
@@ -58,9 +71,9 @@ bool LinkedList::insert_before(LinkedListNode *loc, LinkedListNode *node)
   if (ptr == nullptr){
     return ret;
   }
-  LinkedListNode *temp = ptr->pNext;
+  auto tmp = ptr->pNext;
   ptr->pNext = node;
-  node->pNext = temp;
+  node->pNext = tmp;
   ret = true;
   return ret;
 }
@@ -68,17 +81,22 @@ bool LinkedList::insert_before(LinkedListNode *loc, LinkedListNode *node)
 bool LinkedList::remove(LinkedListNode *node)
 {
   bool ret = false;
-  LinkedListNode *ptr = LinkedList::m_head;
+  auto *ptr = m_head;
+  if (nullptr == m_head || nullptr == m_tail){
+    return false;
+  }
+  if (node = m_head){
+    m_head = nullptr;
+    m_tail = nullptr;
+    return true;
+    }
   while(ptr->pNext != node){
       ptr = ptr->pNext;
       if (ptr == nullptr){
         return ret;
       }
   }
-
   ptr->pNext = node->pNext;
-  delete node;
-
   ret = true;
   return ret;
 }

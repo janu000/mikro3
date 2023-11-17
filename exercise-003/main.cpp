@@ -25,7 +25,6 @@ auto main(int argc, char **argv) -> int
         for (auto &name : names)
         {
             auto elem = new LinkedListNode(name);
-            // elem->print();
             list.insert_tail(elem);
         }
         list.traverse(printer);
